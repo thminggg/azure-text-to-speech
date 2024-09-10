@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "microsoft-cognitiveservices-speech-sdk": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.18",
+    "typescript": "^5.4.5",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "start": "ts-node src/app.ts"
+  },
+  "name": "azure-speech-to-text",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "thminggg <tsehongming21@gmail.com>",
+  "license": "MIT"
+}
