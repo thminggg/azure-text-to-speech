@@ -22,7 +22,11 @@ OUTPUT_DIR=your-output-directory
 3. Run the app
 
 ```bash
+# To generate audio
 yarn start
+
+# To generate captions
+yarn caption --audio ./speech/2024-9-10-23-24-47.wav --captionDir ./captions --srt
 ```
 
 ## License

@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
+import path from "path";
 import { dateToFormat } from "./helpers/date";
 import { parse } from "./helpers/template";
 
@@ -14,12 +15,13 @@ const app = async () => {
   speechConfig.speechSynthesisVoiceName = process.env.VOICE_NAME || "";
 
   // Create output directory if not exists
-  if (!fs.existsSync(process.env.OUTPUT_DIR || "output"))
-    fs.mkdirSync(process.env.OUTPUT_DIR || "output");
+  const speechDir = process.env.SPEECH_DIR || "speech";
+  if (!fs.existsSync(speechDir)) fs.mkdirSync(speechDir);
 
-  const audioFile = `${process.env.OUTPUT_DIR || "output"}/${dateToFormat(
-    Date.now()
-  )}.wav`;
+  const audioFile = path.join(
+    __dirname,
+    `../${speechDir}/${dateToFormat(Date.now())}.wav`
+  );
   const audioConfig = sdk.AudioConfig.fromAudioFileOutput(audioFile);
 
   // Create the speech synthesizer.
@@ -45,7 +47,7 @@ const app = async () => {
       synthesizer.close();
     },
     (err) => {
-      console.trace("err - " + err);
+      console.trace("err: " + err);
       synthesizer.close();
     }
   );
